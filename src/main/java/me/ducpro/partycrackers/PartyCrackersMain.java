@@ -2,17 +2,14 @@ package me.ducpro.partycrackers;
 
 import co.aikar.commands.BukkitCommandManager;
 import com.google.inject.*;
-import me.ducpro.partycrackers.commands.GiveCommand;
-import me.ducpro.partycrackers.items.CrackerBuilder;
-import me.ducpro.partycrackers.items.CrackerItem;
+import me.ducpro.partycrackers.commands.Commands;
+import me.ducpro.partycrackers.configuration.PartyCrackerConfiguration;
+import me.ducpro.partycrackers.items.PartyCrackerItem;
 import me.ducpro.partycrackers.listeners.CrackerListener;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.EventListener;
 
 public class PartyCrackersMain extends JavaPlugin {
     @Override
@@ -23,22 +20,20 @@ public class PartyCrackersMain extends JavaPlugin {
                     @Override
                     protected void configure() {
                         bind(Plugin.class).toInstance(pluginInstance);
-                    }
-                },
-                new AbstractModule() {
-                    @Override
-                    protected void configure() {
-                        bind(CrackerBuilder.class).to(CrackerItem.class).in(Scopes.SINGLETON);
+                        bind(PartyCrackerItem.class).in(Scopes.SINGLETON);
+                        bind(PartyCrackerConfiguration.class).in(Scopes.SINGLETON);
                     }
                 }
         );
 
         BukkitCommandManager manager = new BukkitCommandManager(this);
-        manager.registerCommand(injector.getInstance(GiveCommand.class));
+        manager.registerCommand(injector.getInstance(Commands.class));
 
         this.registerListeners(
                 injector.getInstance(CrackerListener.class)
         );
+
+        this.saveDefaultConfig();
     }
 
     public void registerListeners(Listener...listeners) {

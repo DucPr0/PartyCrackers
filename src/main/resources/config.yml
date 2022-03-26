@@ -1,0 +1,6 @@
+cracker:
+  material: FIREWORK_ROCKET
+  lore:
+    - default lore 1
+    - default lore 2
+  shiny: true

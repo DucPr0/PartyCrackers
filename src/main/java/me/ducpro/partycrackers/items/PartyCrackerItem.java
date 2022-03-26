@@ -1,5 +1,6 @@
 package me.ducpro.partycrackers.items;
 
+import me.ducpro.partycrackers.configuration.PartyCrackerConfiguration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -13,40 +14,24 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 
-public class CrackerItem implements CrackerBuilder {
-    private Plugin plugin;
-
-    private Material type;
-    private List<String> lore;
-    private boolean shiny;
+public class PartyCrackerItem {
+    private final Plugin plugin;
+    private final PartyCrackerConfiguration partyCrackerConfiguration;
 
     @Inject
-    public CrackerItem(Plugin plugin) {
+    public PartyCrackerItem(
+            Plugin plugin,
+            PartyCrackerConfiguration partyCrackerConfiguration) {
         this.plugin = plugin;
-
-        setType(Material.FIREWORK_ROCKET);
-        setLore(Arrays.asList("test1", "test2", "test3"));
-        setShiny(true);
+        this.partyCrackerConfiguration = partyCrackerConfiguration;
     }
 
-    public void setType(Material type) {
-        this.type = type;
-    }
-
-    public void setLore(List<String> lore) {
-        this.lore = lore;
-    }
-
-    public void setShiny(boolean shiny) {
-        this.shiny = shiny;
-    }
-
-    public ItemStack build(int amount) {
-        ItemStack crackers = new ItemStack(this.type, amount);
+    public ItemStack getItem(int amount) {
+        ItemStack crackers = new ItemStack(this.partyCrackerConfiguration.getCrackerMaterial(), amount);
 
         ItemMeta itemMeta = crackers.getItemMeta();
-        itemMeta.setLore(this.lore);
-        if (this.shiny) {
+        itemMeta.setLore(this.partyCrackerConfiguration.getCrackerLore());
+        if (this.partyCrackerConfiguration.isCrackerShiny()) {
             itemMeta.addEnchant(Enchantment.DURABILITY, 1, false);
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }

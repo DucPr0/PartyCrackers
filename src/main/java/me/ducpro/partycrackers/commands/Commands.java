@@ -1,6 +1,5 @@
 package me.ducpro.partycrackers.commands;
 
-import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 
 import me.ducpro.partycrackers.configuration.PartyCrackerConfiguration;

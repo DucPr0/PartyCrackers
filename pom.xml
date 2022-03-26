@@ -21,18 +21,6 @@
             <id>guice</id>
             <url>https://mvnrepository.com/artifact/com.google.inject/guice</url>
         </repository>
-        <repository>
-            <id>junit-jupiter-engine</id>
-            <url>https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine</url>
-        </repository>
-        <repository>
-            <id>junit-platform-runner</id>
-            <url>https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner</url>
-        </repository>
-        <repository>
-            <id>mockito</id>
-            <url>https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -52,24 +40,6 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>5.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.2.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>1.2.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>4.3.1</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

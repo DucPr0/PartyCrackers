@@ -2,6 +2,8 @@ package me.ducpro.partycrackers.configuration;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.plugin.Plugin;
 
 import javax.inject.Inject;
@@ -20,16 +22,37 @@ public class PartyCrackerConfiguration {
         return crackerShiny;
     }
 
+    public Sound getExplosionSound() {
+        return explosionSound;
+    }
+
+    public Particle getExplosionParticle() {
+        return explosionParticle;
+    }
+
+    public int getExplosionParticleAmount() {
+        return explosionParticleAmount;
+    }
+
     private final Plugin plugin;
 
-    private String crackerMaterialPath = "cracker.material";
+    private final String crackerMaterialPath = "cracker.material";
     private Material crackerMaterial;
 
-    private String crackerLorePath = "cracker.lore";
+    private final String crackerLorePath = "cracker.lore";
     private List<String> crackerLore;
 
-    private String crackerShinyPath = "cracker.shiny";
+    private final String crackerShinyPath = "cracker.shiny";
     private boolean crackerShiny;
+
+    private final String explosionSoundPath = "cracker.explosionSound";
+    private Sound explosionSound;
+
+    private final String explosionParticlePath = "cracker.explosionParticle";
+    private Particle explosionParticle;
+
+    private final String explosionParticleAmountPath = "cracker.explosionParticleAmount";
+    private int explosionParticleAmount;
 
     @Inject
     public PartyCrackerConfiguration(Plugin plugin) {
@@ -45,10 +68,16 @@ public class PartyCrackerConfiguration {
     }
 
     private void loadConfigurationValues() {
-        crackerMaterial = Material.getMaterial(this.plugin.getConfig().getString(crackerMaterialPath));
+        this.crackerMaterial = Material.getMaterial(this.plugin.getConfig().getString(this.crackerMaterialPath));
 
-        crackerLore = this.plugin.getConfig().getStringList(crackerLorePath);
+        this.crackerLore = this.plugin.getConfig().getStringList(this.crackerLorePath);
 
-        crackerShiny = this.plugin.getConfig().getBoolean(crackerShinyPath);
+        this.crackerShiny = this.plugin.getConfig().getBoolean(this.crackerShinyPath);
+
+        this.explosionSound = Sound.valueOf(this.plugin.getConfig().getString(this.explosionSoundPath));
+
+        this.explosionParticle = Particle.valueOf(this.plugin.getConfig().getString(this.explosionParticlePath));
+
+        this.explosionParticleAmount = this.plugin.getConfig().getInt(this.explosionParticleAmountPath);
     }
 }

@@ -4,3 +4,6 @@ cracker:
     - default lore 1
     - default lore 2
   shiny: true
+  explosionSound: ENTITY_GENERIC_EXPLODE
+  explosionParticle: EXPLOSION_NORMAL
+  explosionParticleAmount: 1

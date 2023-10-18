@@ -1,2 +1,2 @@
 # partycrackers
-Sample plugin developed for merakistudios.eu
+Plugin developed for merakistudios.eu as part of the interview process
